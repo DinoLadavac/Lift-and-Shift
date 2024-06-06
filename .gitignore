@@ -1,0 +1,10 @@
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.hash
+[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.json
