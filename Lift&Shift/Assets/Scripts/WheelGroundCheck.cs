@@ -6,13 +6,16 @@ public class WheelGroundCheck : MonoBehaviour
     public float wheelRadius = 0.5f;  // Radius of the wheels
     private bool isGrounded;
     private CarController carController;
+    private CraneController craneController;
 
     void Start()
     {
         carController = GetComponent<CarController>();
+        craneController = GetComponent<CraneController>();
+        craneController.enabled=false;
         if (carController == null)
         {
-            Debug.LogError("CarController script not found on the car object.");
+           // Debug.LogError("CarController script not found on the car object.");
         }
     }
 
@@ -45,7 +48,7 @@ public class WheelGroundCheck : MonoBehaviour
 
     void EnableCarMovement()
     {
-        if (carController != null)
+        if (carController != null & craneController.enabled == false)
         {
             carController.enabled = true;
         }
