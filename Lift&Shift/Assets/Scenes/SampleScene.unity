@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -721,6 +721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 368801176}
+  - component: {fileID: 368801177}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Grass
@@ -736,7 +737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368801175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -791,6 +792,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &368801177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368801175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 60.012978, y: 1, z: 79.4823}
+  m_Center: {x: 39.634686, y: 0, z: -9.635651}
 --- !u!4 &379682765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 824612895492791544, guid: a07b27d9524fb1e41a2f49f968c8a1bf, type: 3}
@@ -1732,11 +1746,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: fc2b2b65264c13f48a615fa7dbc2ef24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.17
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: fc2b2b65264c13f48a615fa7dbc2ef24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.1
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: fc2b2b65264c13f48a615fa7dbc2ef24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3234,8 +3248,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee357356c960234e8332686553e879e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  turnSpeed: 59
+  maxMoveSpeed: 25
+  turnSpeed: 50
+  grassSlowdownFactor: 0.5
+  acceleration: 3
+  deceleration: 3
+  brakeStrength: 7
+  minTurnSpeedFactor: 0.7
 --- !u!54 &1033266920
 Rigidbody:
   m_ObjectHideFlags: 0

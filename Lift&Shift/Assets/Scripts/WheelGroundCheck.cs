@@ -12,10 +12,14 @@ public class WheelGroundCheck : MonoBehaviour
     {
         carController = GetComponent<CarController>();
         craneController = GetComponent<CraneController>();
-        craneController.enabled=false;
+        if (craneController != null)
+        {
+            craneController.enabled = false;
+        }
+
         if (carController == null)
         {
-           // Debug.LogError("CarController script not found on the car object.");
+            Debug.LogError("CarController script not found on the car object.");
         }
     }
 
@@ -28,7 +32,7 @@ public class WheelGroundCheck : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(wheel.position, -wheel.up, out hit, wheelRadius + 0.1f))
             {
-                if (hit.collider.CompareTag("Road") || hit.collider.CompareTag("Grass") || hit.collider.CompareTag("Soil"))  // Assuming the road has a tag "Road"
+                if (hit.collider.CompareTag("Road") || hit.collider.CompareTag("Grass") || hit.collider.CompareTag("Soil"))
                 {
                     isGrounded = true;
                     break;
@@ -48,9 +52,9 @@ public class WheelGroundCheck : MonoBehaviour
 
     void EnableCarMovement()
     {
-        if (carController != null & craneController.enabled == false)
+        if (carController != null)
         {
-            carController.enabled = true;
+            carController.SetInputEnabled(true);
         }
     }
 
@@ -58,7 +62,8 @@ public class WheelGroundCheck : MonoBehaviour
     {
         if (carController != null)
         {
-            carController.enabled = false;
+            Debug.Log("Disable car control");
+            carController.SetInputEnabled(false);
         }
     }
 }
