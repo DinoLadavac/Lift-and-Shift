@@ -23,26 +23,29 @@ public class CraneController : MonoBehaviour
     private Vector3 initialHookLocalPosition;
     private bool isMagnetOn = false;  // State of the magnet
     private Transform attachedContainer = null;  // Reference to the attached container
+    private Quaternion containerRotationOffset;  // Offset to maintain the container's original rotation
+    private bool isHookColliding = false;  // Flag to indicate if the hook is colliding
 
     // Offset for detaching the container
     public float detachOffset = 1.0f;  // Adjust this value as needed
     public float detectionRadius = 9f;
 
-    void Start()
+    private void Start()
     {
         initialHookLocalPosition = hook.localPosition;
     }
 
-    void Update()
+    private void Update()
     {
         HandleInput();
         if (isMagnetOn && attachedContainer != null)
         {
             attachedContainer.position = hookAttachmentPoint.position; // Ensure the container is exactly at the hook's attachment point
+            attachedContainer.rotation = hookAttachmentPoint.rotation * containerRotationOffset; // Ensure the container maintains its original rotation
         }
     }
 
-    void HandleInput()
+    private void HandleInput()
     {
         if (Input.GetKey(KeyCode.A))
         {
@@ -62,11 +65,11 @@ public class CraneController : MonoBehaviour
             MoveMovingPart(Vector3.left);
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && !isHookColliding)
         {
             MoveHook(Vector3.down);
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && !isHookColliding)
         {
             MoveHook(Vector3.up);
         }
@@ -77,7 +80,7 @@ public class CraneController : MonoBehaviour
         }
     }
 
-    void MoveMovingPart(Vector3 direction)
+    private void MoveMovingPart(Vector3 direction)
     {
         Vector3 newPosition = movingPart.position + craneArmPivot.TransformDirection(direction * movingPartSpeed * Time.deltaTime);
         Vector3 localPosition = craneArmPivot.InverseTransformPoint(newPosition);
@@ -88,7 +91,7 @@ public class CraneController : MonoBehaviour
         }
     }
 
-    void MoveHook(Vector3 direction)
+    private void MoveHook(Vector3 direction)
     {
         Vector3 newPosition = hook.localPosition + direction * hookMovementSpeed * Time.deltaTime;
 
@@ -103,15 +106,13 @@ public class CraneController : MonoBehaviour
         hookCable.localPosition = initialHookLocalPosition + Vector3.down * (distance / 2);
     }
 
-    void ToggleMagnet()
+    private void ToggleMagnet()
     {
         isMagnetOn = !isMagnetOn;
 
         if (isMagnetOn)
         {
             // Use the hook position and set the detection radius based on the hook's size
-
-            // Adjust position with offset based on hook's scale
             Vector3 detectionPosition = hook.position;
 
             // Try to attach a nearby container
@@ -125,7 +126,9 @@ public class CraneController : MonoBehaviour
             {
                 attachedContainer = colliders[0].transform;
                 attachedContainer.GetComponent<Rigidbody>().isKinematic = true;
-                attachedContainer.position = hookAttachmentPoint.position; // Ensure the container is exactly at the hook's attachment point
+                containerRotationOffset = Quaternion.Inverse(hookAttachmentPoint.rotation) * attachedContainer.rotation; // Calculate the offset to maintain the container's original rotation
+                attachedContainer.SetParent(hookAttachmentPoint, true); // Make the container a child of the hook attachment point and maintain world space orientation
+                attachedContainer.localPosition = Vector3.zero; // Ensure the container is exactly at the hook's attachment point
                 Debug.Log("Magnet turned on and container attached.");
             }
             else
@@ -139,6 +142,7 @@ public class CraneController : MonoBehaviour
             if (attachedContainer != null)
             {
                 attachedContainer.GetComponent<Rigidbody>().isKinematic = false;
+                attachedContainer.SetParent(null); // Unparent the container
                 attachedContainer.position = hookAttachmentPoint.position + Vector3.down * detachOffset; // Lower the container upon detaching
                 attachedContainer = null;
                 Debug.Log("Magnet turned off and container detached.");
@@ -146,11 +150,25 @@ public class CraneController : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Container") || collision.gameObject.CompareTag("Road"))
+        {
+            isHookColliding = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Container") || collision.gameObject.CompareTag("Road"))
+        {
+            isHookColliding = false;
+        }
+    }
+
+    private void OnDrawGizmos()
     {
         Gizmos.color = isMagnetOn ? Color.red : Color.green;
-        // Use the hook position and set the detection radius based on the hook's size
-        float detectionRadius = hook.localScale.x / 2;  // Assuming the hook's scale x represents its size
         // Draw detection sphere at hook position
         Gizmos.DrawWireSphere(hook.position, detectionRadius);
     }
