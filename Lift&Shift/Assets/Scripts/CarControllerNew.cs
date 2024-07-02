@@ -18,11 +18,16 @@ public class CarControllerNew : MonoBehaviour
     public Transform frontRightWheelTransform;
     public Transform rearLeftWheelTransform;
     public Transform rearRightWheelTransform;
+    public LayerMask collisionLayers;
 
-    public float maxSteeringAngle = 30f;
-    public float motorForce = 2000f;
-    public float brakeForce = 6000f;
+    public float maxSteeringAngle;
+    public float motorForce;
+    public float brakeForce;
+    public float decelerationSpeed;
 
+    private float currentMotorTorque = 0f;
+
+    public ScoreController scoreController;
 
     private void FixedUpdate()
     {
@@ -48,10 +53,21 @@ public class CarControllerNew : MonoBehaviour
 
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
 
-        float currentbrakeForce = isBreaking ? brakeForce : 0f;
+        currentMotorTorque = verticalInput * motorForce;
+
+        frontLeftWheelCollider.motorTorque = currentMotorTorque;
+        frontRightWheelCollider.motorTorque = currentMotorTorque;
+
+        float currentbrakeForce = 0f;
+        if (isBreaking)
+        {
+            currentbrakeForce = brakeForce;
+        }
+        else if(verticalInput == 0)
+        {
+            currentbrakeForce = decelerationSpeed;
+        }
         frontLeftWheelCollider.brakeTorque = currentbrakeForce;
         frontRightWheelCollider.brakeTorque = currentbrakeForce;
         rearLeftWheelCollider.brakeTorque = currentbrakeForce;
@@ -75,4 +91,12 @@ public class CarControllerNew : MonoBehaviour
         trans.position = pos;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (((1 << collision.gameObject.layer) & collisionLayers) != 0)
+        {
+            scoreController.ApplyDamage();
+            Debug.Log("Collision with object in LayerMask: " + collision.gameObject.name);
+        }
+    }
 }
