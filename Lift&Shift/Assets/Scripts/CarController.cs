@@ -1,14 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public float maxMoveSpeed = 25f;
+    public float maxMoveSpeed = 20f;
     public float turnSpeed = 50f;
     public float grassSlowdownFactor = 0.5f;
     public float acceleration = 3f;
     public float deceleration = 3f;
     public float brakeStrength = 7f;
     public float minTurnSpeedFactor = 0.7f; // Minimum factor for turning speed
+    public LayerMask collisionLayers;
 
     private Rigidbody rb;
     private float moveInput;
@@ -80,6 +82,7 @@ public class CarController : MonoBehaviour
 
         // Move the car forward or backward
         Vector3 forwardMovement = transform.forward * currentSpeed * Time.deltaTime;
+
         rb.MovePosition(rb.position + forwardMovement);
 
         // Adjust turn speed based on current speed
@@ -118,5 +121,15 @@ public class CarController : MonoBehaviour
             onGrass = false;
             Debug.Log("Car has left the grass");
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the collision is with an object in the specified LayerMask
+        if (((1 << collision.gameObject.layer) & collisionLayers) != 0)
+        {
+            Debug.Log("Collision with object in LayerMask: " + collision.gameObject.name);
+        }
+        Debug.Log(collision.gameObject.tag);
     }
 }
