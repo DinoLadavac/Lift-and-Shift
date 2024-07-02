@@ -24,7 +24,13 @@ public class CraneController : MonoBehaviour
     private bool isMagnetOn = false;  // State of the magnet
     private Transform attachedContainer = null;  // Reference to the attached container
     private Quaternion containerRotationOffset;  // Offset to maintain the container's original rotation
-    private bool isHookColliding = false;  // Flag to indicate if the hook is colliding
+
+    private bool canMoveDown = true;
+    private bool canMoveUp = true;
+    private bool canMoveLeft = true;
+    private bool canMoveRight = true;
+    private bool canRotateLeft = true;
+    private bool canRotateRight = true;
 
     // Offset for detaching the container
     public float detachOffset = 1.0f;  // Adjust this value as needed
@@ -47,29 +53,29 @@ public class CraneController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && canRotateLeft)
         {
             craneArmPivot.Rotate(Vector3.up, -armRotationSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && canRotateRight)
         {
             craneArmPivot.Rotate(Vector3.up, armRotationSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && canMoveRight)
         {
             MoveMovingPart(Vector3.right);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && canMoveLeft)
         {
             MoveMovingPart(Vector3.left);
         }
 
-        if (Input.GetKey(KeyCode.Q) && !isHookColliding)
+        if (Input.GetKey(KeyCode.Q) && canMoveDown)
         {
             MoveHook(Vector3.down);
         }
-        if (Input.GetKey(KeyCode.E) && !isHookColliding)
+        if (Input.GetKey(KeyCode.E) && canMoveUp)
         {
             MoveHook(Vector3.up);
         }
@@ -154,7 +160,28 @@ public class CraneController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Container") || collision.gameObject.CompareTag("Road"))
         {
-            isHookColliding = true;
+            Vector3 collisionDirection = collision.GetContact(0).normal;
+
+            if (collisionDirection.y > 0) // Colliding from above
+            {
+                canMoveDown = false;
+                Debug.Log("Colliding while lowering...");
+            }
+            if (collisionDirection.y < 0) // Colliding from below
+            {
+                canMoveUp = false;
+                Debug.Log("Colliding while raising...");
+            }
+            if (collisionDirection.x < 0) // Colliding from the right
+            {
+                canMoveRight = false;
+                Debug.Log("Colliding while moving right...");
+            }
+            if (collisionDirection.x > 0) // Colliding from the left
+            {
+                canMoveLeft = false;
+                Debug.Log("Colliding while moving left...");
+            }
         }
     }
 
@@ -162,7 +189,40 @@ public class CraneController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Container") || collision.gameObject.CompareTag("Road"))
         {
-            isHookColliding = false;
+            canMoveDown = true;
+            canMoveUp = true;
+            canMoveLeft = true;
+            canMoveRight = true;
+            Debug.Log("Collision ended, can move freely.");
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Container") || collision.gameObject.CompareTag("Road"))
+        {
+            Vector3 collisionDirection = collision.GetContact(0).normal;
+
+            if (collisionDirection.y > 0) // Colliding from above
+            {
+                canMoveDown = false;
+                Debug.Log("Still colliding while lowering...");
+            }
+            if (collisionDirection.y < 0) // Colliding from below
+            {
+                canMoveUp = false;
+                Debug.Log("Still colliding while raising...");
+            }
+            if (collisionDirection.x < 0) // Colliding from the right
+            {
+                canMoveRight = false;
+                Debug.Log("Still colliding while moving right...");
+            }
+            if (collisionDirection.x > 0) // Colliding from the left
+            {
+                canMoveLeft = false;
+                Debug.Log("Still colliding while moving left...");
+            }
         }
     }
 
