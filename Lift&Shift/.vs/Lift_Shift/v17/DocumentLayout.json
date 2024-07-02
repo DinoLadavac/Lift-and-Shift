@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\carcontrollernew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|c:\\users\\denik\\documents\\github\\lift-and-shift\\lift\u0026shift\\assets\\scripts\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\assets\\scripts\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\assets\\scripts\\wheelgroundcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\wheelgroundcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|c:\\users\\denik\\documents\\github\\lift-and-shift\\lift\u0026shift\\assets\\scripts\\scorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\Test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ScoreController.cs",
+              "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\ScoreController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScoreController.cs",
+              "ToolTip": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\ScoreController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScoreController.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAAAGgAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T12:19:51.206Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,14 +53,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\CarControllerNew.cs",
               "ToolTip": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CarControllerNew.cs",
               "RelativeToolTip": "Assets\\Scripts\\CarControllerNew.cs",
-              "ViewState": "AQIAABgAAAAAOmZmZmYEwDkAAAA+AAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAADoAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-01T23:59:27.477Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Test.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\Test.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Test.cs",
@@ -51,12 +68,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Test.cs",
               "ViewState": "AQIAACoAAAAAVmZmZmYEwCUAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T22:25:30.712Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-01T22:25:30.712Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "WheelGroundCheck.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\WheelGroundCheck.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\WheelGroundCheck.cs",
@@ -64,19 +80,21 @@
               "RelativeToolTip": "Assets\\Scripts\\WheelGroundCheck.cs",
               "ViewState": "AQIAABUAAAAAAAAAAAAAAEAAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T15:29:45.482Z"
+              "WhenOpened": "2024-07-01T15:29:45.482Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CarController.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CarController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CarController.cs",
               "ToolTip": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CarController.cs",
               "RelativeToolTip": "Assets\\Scripts\\CarController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAqwC0AAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T15:14:17.922Z"
+              "WhenOpened": "2024-07-01T15:14:17.922Z",
+              "EditorCaption": ""
             }
           ]
         }
