@@ -6,10 +6,15 @@ public class CraneController : MonoBehaviour
 {
     public Transform craneArmPivot;
     public Transform movingPart;
-    public Transform hook;  // This should be the visible part of the hook/magnet
+    public Transform hook;  // Reference to the current hook/magnet
     public Transform hookCable;  // Reference to the hook cable
     public LayerMask containerLayer; // Layer for detecting containers
+    public LayerMask vehicleLayer; // Layer for detecting vehicles
     public Transform hookAttachmentPoint;  // The point where the container should attach, at the bottom of the hook
+    public Transform vehicleHookAttachmentPoint;  // The point where the vehicle should attach, at the bottom of the vehicle hook
+
+    public Transform standardHook;  // Reference to the standard hook
+    public Transform vehicleHook;  // Reference to the vehicle hook
 
     public float armRotationSpeed = 20f;
     public float movingPartSpeed = 5f;
@@ -35,6 +40,8 @@ public class CraneController : MonoBehaviour
     // Offset for detaching the container
     public float detachOffset = 1.0f;  // Adjust this value as needed
     public float detectionRadius = 9f;
+    public float collisionDetectionRadius = 2f;  // Radius for the collision detection sphere
+    public float collisionDetectionRadiusWithContainer = 3f;  // Radius for the collision detection sphere with a container attached
 
     private void Start()
     {
@@ -44,10 +51,12 @@ public class CraneController : MonoBehaviour
     private void Update()
     {
         HandleInput();
+        CheckCollisions();
         if (isMagnetOn && attachedContainer != null)
         {
-            attachedContainer.position = hookAttachmentPoint.position; // Ensure the container is exactly at the hook's attachment point
-            attachedContainer.rotation = hookAttachmentPoint.rotation * containerRotationOffset; // Ensure the container maintains its original rotation
+            Transform currentAttachmentPoint = hook == standardHook ? hookAttachmentPoint : vehicleHookAttachmentPoint;
+            attachedContainer.position = currentAttachmentPoint.position; // Ensure the container is exactly at the hook's attachment point
+            attachedContainer.rotation = currentAttachmentPoint.rotation * containerRotationOffset; // Ensure the container maintains its original rotation
         }
     }
 
@@ -83,6 +92,11 @@ public class CraneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             ToggleMagnet();
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))  // Key to switch hooks
+        {
+            SwitchHook();
         }
     }
 
@@ -121,37 +135,106 @@ public class CraneController : MonoBehaviour
             // Use the hook position and set the detection radius based on the hook's size
             Vector3 detectionPosition = hook.position;
 
-            // Try to attach a nearby container
-            Collider[] colliders = Physics.OverlapSphere(detectionPosition, detectionRadius, containerLayer);
-            Debug.Log("Checking for containers in range. Found: " + colliders.Length);
+            // Try to attach a nearby container or vehicle
+            LayerMask currentLayer = hook == standardHook ? containerLayer : vehicleLayer;
+            Collider[] colliders = Physics.OverlapSphere(detectionPosition, detectionRadius, currentLayer);
+            Debug.Log("Checking for objects in range. Found: " + colliders.Length);
             foreach (Collider col in colliders)
             {
-                Debug.Log("Found container: " + col.name);
+                Debug.Log("Found object: " + col.name);
             }
             if (colliders.Length > 0)
             {
                 attachedContainer = colliders[0].transform;
                 attachedContainer.GetComponent<Rigidbody>().isKinematic = true;
-                containerRotationOffset = Quaternion.Inverse(hookAttachmentPoint.rotation) * attachedContainer.rotation; // Calculate the offset to maintain the container's original rotation
-                attachedContainer.SetParent(hookAttachmentPoint, true); // Make the container a child of the hook attachment point and maintain world space orientation
-                attachedContainer.localPosition = Vector3.zero; // Ensure the container is exactly at the hook's attachment point
-                Debug.Log("Magnet turned on and container attached.");
+                Transform currentAttachmentPoint = hook == standardHook ? hookAttachmentPoint : vehicleHookAttachmentPoint;
+                containerRotationOffset = Quaternion.Inverse(currentAttachmentPoint.rotation) * attachedContainer.rotation; // Calculate the offset to maintain the object's original rotation
+                attachedContainer.SetParent(currentAttachmentPoint, true); // Make the object a child of the hook attachment point and maintain world space orientation
+                attachedContainer.localPosition = Vector3.zero; // Ensure the object is exactly at the hook's attachment point
+                Debug.Log("Magnet turned on and object attached.");
             }
             else
             {
-                Debug.Log("No container in range to attach.");
+                Debug.Log("No object in range to attach.");
             }
         }
         else
         {
-            // Detach the container
+            // Detach the object
             if (attachedContainer != null)
             {
                 attachedContainer.GetComponent<Rigidbody>().isKinematic = false;
-                attachedContainer.SetParent(null); // Unparent the container
-                attachedContainer.position = hookAttachmentPoint.position + Vector3.down * detachOffset; // Lower the container upon detaching
+                attachedContainer.SetParent(null); // Unparent the object
+                Transform currentAttachmentPoint = hook == standardHook ? hookAttachmentPoint : vehicleHookAttachmentPoint;
+                attachedContainer.position = currentAttachmentPoint.position + Vector3.down * detachOffset; // Lower the object upon detaching
                 attachedContainer = null;
-                Debug.Log("Magnet turned off and container detached.");
+                Debug.Log("Magnet turned off and object detached.");
+            }
+        }
+    }
+
+    private void SwitchHook()
+    {
+        if (attachedContainer != null)
+        {
+            Debug.Log("Cannot switch hook while an object is attached.");
+            return; // Do not switch hooks if an object is attached
+        }
+
+        if (hook == standardHook)
+        {
+            SetActiveHook(vehicleHook);
+        }
+        else
+        {
+            SetActiveHook(standardHook);
+        }
+    }
+
+    private void SetActiveHook(Transform newHook)
+    {
+        newHook.SetParent(hook.parent); // Make sure the new hook has the same parent as the old hook
+        newHook.localPosition = hook.localPosition;
+        newHook.localRotation = hook.localRotation;
+        
+        hook.gameObject.SetActive(false);
+        hook = newHook;
+        hook.gameObject.SetActive(true);
+    }
+
+    private void CheckCollisions()
+    {
+        float currentDetectionRadius = isMagnetOn && attachedContainer != null ? collisionDetectionRadiusWithContainer : collisionDetectionRadius;
+        LayerMask currentLayer = hook == standardHook ? containerLayer : vehicleLayer;
+        Collider[] colliders = Physics.OverlapSphere(hook.position, currentDetectionRadius, currentLayer);
+
+        canMoveDown = true;
+        canMoveUp = true;
+        canMoveLeft = true;
+        canMoveRight = true;
+        canRotateLeft = true;
+        canRotateRight = true;
+
+        foreach (Collider col in colliders)
+        {
+            Vector3 directionToCollider = col.transform.position - hook.position;
+
+            if (directionToCollider.y < 0) // Collider below
+            {
+                canMoveDown = false;
+                Debug.Log("Collision detected below. Cannot move down.");
+            }
+            if (directionToCollider.x < 0) // Collider to the right
+            {
+                canRotateRight = false;
+                canMoveRight = false;
+                Debug.Log("Collision detected to the right. Cannot move right or rotate right.");
+            }
+            if (directionToCollider.x > 0) // Collider to the left
+            {
+                canRotateLeft = false;
+                canMoveLeft = false;
+                Debug.Log("Collision detected to the left. Cannot move left or rotate left.");
             }
         }
     }
@@ -231,5 +314,8 @@ public class CraneController : MonoBehaviour
         Gizmos.color = isMagnetOn ? Color.red : Color.green;
         // Draw detection sphere at hook position
         Gizmos.DrawWireSphere(hook.position, detectionRadius);
+
+        float currentDetectionRadius = isMagnetOn && attachedContainer != null ? collisionDetectionRadiusWithContainer : collisionDetectionRadius;
+        Gizmos.DrawWireSphere(hook.position, currentDetectionRadius);
     }
 }
