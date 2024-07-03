@@ -96,7 +96,7 @@ public class CraneController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))  // Key to switch hooks
         {
-            SwitchHook();
+            if(PlayerPrefs.GetInt("BlackMagnet", 0) > 0) { SwitchHook(); }
         }
     }
 
