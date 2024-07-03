@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|c:\\users\\denik\\documents\\github\\lift-and-shift\\lift\u0026shift\\assets\\scripts\\levelselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\assets\\scripts\\levelend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|c:\\users\\denik\\documents\\github\\lift-and-shift\\lift\u0026shift\\assets\\scripts\\shopmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\shopmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|c:\\users\\denik\\documents\\github\\lift-and-shift\\lift\u0026shift\\assets\\scripts\\cranecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\cranecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|c:\\users\\denik\\documents\\github\\lift-and-shift\\lift\u0026shift\\assets\\scripts\\levelselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7AEF5CA6-7A12-9071-30FE-81D3C45F6036}|Assembly-CSharp.csproj|C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,19 +58,46 @@
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CraneController.cs",
+              "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CraneController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CraneController.cs",
+              "ToolTip": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CraneController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CraneController.cs",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAJUAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T01:20:48.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ShopManager.cs",
+              "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\ShopManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ShopManager.cs",
+              "ToolTip": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\ShopManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ShopManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T01:20:36.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "LevelEnd.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\LevelEnd.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelEnd.cs",
               "ToolTip": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\LevelEnd.cs",
               "RelativeToolTip": "Assets\\Scripts\\LevelEnd.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAvAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T00:10:21.645Z"
+              "WhenOpened": "2024-07-03T00:10:21.645Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
@@ -74,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "LevelSelection.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\LevelSelection.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelSelection.cs",
@@ -87,7 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "PauseMenu.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\PauseMenu.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PauseMenu.cs",
@@ -99,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ScoreController.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\ScoreController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScoreController.cs",
@@ -111,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CarControllerNew.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CarControllerNew.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CarControllerNew.cs",
@@ -123,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Test.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\Test.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Test.cs",
@@ -135,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "WheelGroundCheck.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\WheelGroundCheck.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\WheelGroundCheck.cs",
@@ -147,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "CarController.cs",
               "DocumentMoniker": "C:\\Users\\denik\\Documents\\GitHub\\Lift-and-Shift\\Lift\u0026Shift\\Assets\\Scripts\\CarController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CarController.cs",
