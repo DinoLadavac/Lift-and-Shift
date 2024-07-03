@@ -8,6 +8,11 @@ public class PauseMenu : MonoBehaviour
 
     private bool isPaused = false;
 
+    void Start()
+    {
+        Resume(); // Ensure the game starts in a running state
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -29,6 +34,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         scoreController.SetPaused(false); // Unpause the timer
+        Cursor.visible = false; // Hide the cursor
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
     }
 
     public void Pause()
@@ -37,6 +44,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         scoreController.SetPaused(true); // Pause the timer
+        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+        Cursor.visible = true; // Show the cursor
     }
 
     public void Restart()
@@ -45,10 +54,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
 
-    public void QuitGame()
+    public void LevelSelection()
     {
-        // Handle quitting the game (e.g., Application.Quit() for standalone builds)
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        Time.timeScale = 1f; // Ensure time scale is reset
+        SceneManager.LoadScene(2); // Reload the current scene
     }
 }

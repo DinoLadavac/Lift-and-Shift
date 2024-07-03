@@ -115,4 +115,9 @@ public class ScoreController : MonoBehaviour
     {
         isPaused = paused;
     }
+
+    public int GetScore()
+    {
+        return currentScore;
+    }
 }
